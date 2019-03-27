@@ -8,10 +8,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace coreBookStore.Controllers
 {
+
+    [Route("Book")]
     public class BookController : Controller
     {
-        BookStoreDbContext context = new BookStoreDbContext();
-        public ViewResult Index()
+        BookStoreDbContext context;
+
+       public  BookController(BookStoreDbContext _context)
+        {
+            context = _context ;
+        }
+            //BookStoreDbContext context = new BookStoreDbContext();
+            public ViewResult Index()
         {
             var books = context.Books.ToList();
             return View(books);

@@ -9,14 +9,18 @@ namespace coreBookStore.Controllers
 {
     public class PublicationController : Controller
     {
-        BookStoreDbContext context = new BookStoreDbContext();
+        BookStoreDbContext context;
+        public PublicationController(BookStoreDbContext _context)
+        {
+            context  = _context;
+        }
         public ViewResult Index()
         {
             var publications = context.Publications.ToList();
             return View(publications);
         }
         [HttpGet]
-        public ViewResult Create()
+        public ViewResult Details()
         {
             return View();
         }
